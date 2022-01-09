@@ -1,0 +1,41 @@
+.autocomplete-input-container {
+  position: relative;
+  max-width: 80%;
+
+}
+
+.autocomplete-input-suggestions-list {
+  list-style: none;
+  background-color: rgb(133, 122, 120);
+  max-height: 15rem;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
+
+.autocomplete-input-container {
+  width: 100%;
+}
+
+.autocomplete-input-input {
+  padding: .5rem;
+  width: 100%;
+}
+
+.autocomplete-input-no-suggestion-msg {
+  
+}
+
+.autocomplete-input-suggestion {
+  width: 100%;
+  padding-left: 10px;
+}
+
+
+.selected-suggestion {
+  background-color: #ece2e2;
+}
+
+.autocomplete-input-suggestions-container {
+  position: absolute;
+  width: 100%;
+}
