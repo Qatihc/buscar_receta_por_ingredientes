@@ -9,9 +9,12 @@
   border-radius: 2rem;
   border: transparent 2px solid;
   transition: all ease-in-out .2s;
-
   outline: none;
-  border: hotpink 2px solid;
+  border: #333333 2px solid;
+}
+
+.input:focus {
+  border-color: var(--accent-color);
 }
 
 @media (min-width: 1200px) {

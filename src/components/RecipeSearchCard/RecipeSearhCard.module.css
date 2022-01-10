@@ -1,0 +1,9 @@
+.recipeSearchContainer {
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .recipeSearchContainer {
+    width: 50%;
+  }
+}

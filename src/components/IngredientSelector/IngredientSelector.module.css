@@ -1,0 +1,39 @@
+.selectedIngredientsList {
+  display: flex;
+  margin-top: 1.5rem;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  list-style: none;
+}
+
+.searchRecipeBtn {
+  font-size: 1.3rem;
+  padding: .7rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  background-color: var(--gray-4);
+  border: var(--gray-6) 2px solid;
+  border-radius: 15px;
+  transition: all ease-in-out .3s;
+}
+
+.searchRecipeBtn:hover {
+  border: var(--accent-color) 2px solid;
+}
+
+.selectedIngredientsItem {
+  cursor: pointer;
+  padding: .35rem;
+  border-radius: 10px;
+  transition: all ease-in-out .2s;
+  background-color: var(--gray-2);
+  margin-bottom: 1rem;
+}
+
+.selectedIngredientsList li:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.selectedIngredientsItem:hover {
+  background-color: var(--gray-4);
+}

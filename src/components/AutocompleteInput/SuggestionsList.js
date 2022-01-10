@@ -1,14 +1,15 @@
 import React, {useEffect, useState, useRef, useLayoutEffect} from "react";
-import useCanFitUnderInput from "./hooks/useCanFitUnderInput";
+import useSuggestionsTopOffset from "./hooks/useSuggestionsTopOffset";
 
 import styles from './SuggestionsList.module.css'
 
 const SuggestionsList = ({ suggestions, activeSuggestionIndex, setActiveSuggestionIndex, selectCurrentSuggestion, getInputYPosition }) => {
   const activeSuggestionRef = useRef();
-  const containerRef = useRef();
-  const [ canFitUnderInput, offset ] = useCanFitUnderInput(containerRef, getInputYPosition, suggestions);
+  const suggestionsContainerRef = useRef();
 
-/*   const suggestionListHeight = containerRef.current && containerRef.current.getBoundingClientRect().height; */
+  const inputYPosition = getInputYPosition();
+  const topOffset = useSuggestionsTopOffset(suggestionsContainerRef, inputYPosition, suggestions);
+  const isDisplayedUnderInput = topOffset == 'auto';
   
   useEffect(() => {
     if (suggestions.length !== 0) {
@@ -17,7 +18,11 @@ const SuggestionsList = ({ suggestions, activeSuggestionIndex, setActiveSuggesti
   }, [activeSuggestionIndex]);
 
   return (
-    <div className={styles.suggestionsContainer} ref={containerRef} style={{top: (canFitUnderInput) ? 'auto' : offset}}>
+    <div 
+      className={`${styles.suggestionsContainer} ${(isDisplayedUnderInput) ? styles.suggestionsListUnder : styles.suggestionsListAbove}`} 
+      ref={suggestionsContainerRef} 
+      style={{top: topOffset}}
+    >
       <ul className={styles.suggestionsList} tabIndex={-1}>
         { 
         (suggestions.length !== 0) ?

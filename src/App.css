@@ -6,69 +6,22 @@
 
 :root {
   /* A9E4EF */
-  --header-bg-color: #353535;
-  --card-bg-color: #edf0d8;
+  --gray-1: #F5F5F5;
+  --gray-2: #EBEBEB;
+  --gray-3: #E0E0E0;
+  --gray-4: #C2C2C2;
+  --gray-5: #525252;
+  --gray-6: #292929;
   --accent-color: #3FC979;
 }
 
-.main-grid {
-  display: grid;
-  grid-template-columns: 2fr 3fr 2fr;
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
   padding-top: 3rem;
   background: url('../public/269.jpg') no-repeat ;
   background-blend-mode: multiply;
   background-size: cover;
-}
-
-.header-container {
-  grid-column: 1/4;
-  padding: 1rem 0;
-  background-color: var(--header-bg-color);
-  color: #ece2e2;
-}
-
-.header-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  text-align: center;
-}
-
-.card-search-recipes-container {
-  display: flex;
-  grid-column: 2;
-
-  flex-direction: column;
-  align-items: center;
-}
-
-.card {
-  display: flex;
-  padding: 2rem;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--card-bg-color);
-  border-radius: 3%;
-  border-top: 3px #3FC979 solid;
-  box-shadow: 0 3px 10px rgb(0 0 0);
-  min-height: 500px;
-  transition: all ease-in-out 1s;
-}
-
-.card-header {
-  padding-bottom: 4rem;
-  text-align: center;
-}
-
-.card-title {
-  font-size: 4rem;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  color: #333333;
-}
-
-.card-description {
-  padding: 0 5rem;
-  text-align: center;
-  font-size: 1.1.rem;
 }

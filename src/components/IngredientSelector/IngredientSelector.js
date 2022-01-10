@@ -1,15 +1,17 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useContext } from 'react';
+import { RecipeContext } from '../../contexts';
 import { AutocompleteInput } from '../AutocompleteInput';
-
 import ingredients from './api/ingredientsList.json';
 import fetchRecipeByIngredient from './api/fetchRecipeByIngredient';
 
-import './IngredientSelector.css'
+import styles from './IngredientSelector.module.css'
 
-const IngredientSelector = ({ setRecipes, setIsLoading }) => {
+const IngredientSelector = () => {
   const ingredientsNames = useMemo(() => Object.keys(ingredients), []);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [suggestions, setSuggestions] = useState(ingredientsNames);
+
+  const recipeDispatch = useContext(RecipeContext).dispatch;
 
   const addIngredient = (ingredient) => {
     setSelectedIngredients([...selectedIngredients, ingredient])
@@ -28,14 +30,9 @@ const IngredientSelector = ({ setRecipes, setIsLoading }) => {
   }
 
   const handleClick = async () => {
-    setIsLoading(true);
+    recipeDispatch({type: 'fetchStart'});
     const response = await fetchRecipeByIngredient(selectedIngredients);
-    setIsLoading(false);
-    /* cambiarf esto, lo puse asi apra testear nomas */
-/*     setRecipes(response) */
-
-    setRecipes(response.data);
-
+    recipeDispatch({type: 'fetchDone', payload: response.data});
   }
 
   return (
@@ -44,10 +41,10 @@ const IngredientSelector = ({ setRecipes, setIsLoading }) => {
         suggestions={suggestions} 
         selectSuggestion={addIngredient} 
       />
-      <button className='search-recipe-btn' onClick={handleClick}>Buscar receta</button>
-      <ul className='selected-ingredients-list'>
+      <button className={styles.searchRecipeBtn} onClick={handleClick}>Buscar receta</button>
+      <ul className={styles.selectedIngredientsList}>
         {selectedIngredients.map(ingredient => 
-          <li key={ingredient} className='selected-ingredients-item' onClick={() => removeIngredient(ingredient)}> {ingredient} </li>
+          <li key={ingredient} className={styles.selectedIngredientsItem} onClick={() => removeIngredient(ingredient)}> {ingredient} </li>
         )}
       </ul>
     </>
