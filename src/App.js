@@ -6,7 +6,6 @@ import './App.css'
 function App() {
   return (
     <>
-    <Header/>
     <div className="main-grid">
       <RecipeSearchCard/>
     </div>

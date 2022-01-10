@@ -1,0 +1,38 @@
+.suggestionsContainer {
+  position: absolute;
+  left: 7.5%;
+  width: 85%;
+}
+
+.suggestionsList {
+  list-style: none;
+  background-color: rgb(207, 201, 200);
+  max-height: 15rem;
+  overflow: scroll;
+  scroll-behavior: smooth;
+}
+
+.suggestionsListAbove {
+  border: hotpink 3px solid;
+  border-bottom: none;
+}
+
+.suggestionsListBelow {
+  border: hotpink 3px solid;
+  border-top: none;
+}
+
+.noSuggestionMsg {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.suggestionListItem {
+  width: 100%;
+  padding-left: 10px;
+  font-size: 1.3rem;
+}
+
+.selectedSuggestion {
+  background-color: #ece2e2;
+}

@@ -1,19 +1,18 @@
 import { useMemo, useState } from 'react';
 import { AutocompleteInput } from '../AutocompleteInput';
 
-import ingredients from '../../const/ingredients.json'
-import getRecipeByIngredient from '../../api/getRecipeByIngredient';
+import ingredients from './api/ingredientsList.json';
+import fetchRecipeByIngredient from './api/fetchRecipeByIngredient';
 
-const IngredientSelector = () => {
+import './IngredientSelector.css'
+
+const IngredientSelector = ({ setRecipes, setIsLoading }) => {
   const ingredientsNames = useMemo(() => Object.keys(ingredients), []);
-
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [suggestions, setSuggestions] = useState(ingredientsNames);
-  const [recipes, setRecipes] = useState([]);
 
   const addIngredient = (ingredient) => {
     setSelectedIngredients([...selectedIngredients, ingredient])
-    console.log(suggestions)
     setSuggestions(suggestions.filter((suggestion) => suggestion !== ingredient));
   }
 
@@ -23,30 +22,34 @@ const IngredientSelector = () => {
     )
     setSelectedIngredients(filteredIngredients);
     /* Si borre un ingrediente, lo vuelvo a agregar a las sugerencias */
-    console.log(suggestions)
     if (filteredIngredients.length !== selectedIngredients.length) {
       setSuggestions([...suggestions, ingredientToRemove]);
     }
   }
 
-  const apiCall = async () => {
-    const ingredientsEnglishNames = selectedIngredients.map((selectedIngredient) => ingredients[selectedIngredient].enlishName);
-    const response = await getRecipeByIngredient(ingredientsEnglishNames);
-    setRecipes(response.data[0].title)
+  const handleClick = async () => {
+    setIsLoading(true);
+    const response = await fetchRecipeByIngredient(selectedIngredients);
+    setIsLoading(false);
+    /* cambiarf esto, lo puse asi apra testear nomas */
+/*     setRecipes(response) */
+
+    setRecipes(response.data);
+
   }
 
   return (
     <>
       <AutocompleteInput 
         suggestions={suggestions} 
-        addIngredient={addIngredient} 
-        removeIngredient={removeIngredient}
+        selectSuggestion={addIngredient} 
       />
-      {selectedIngredients.map(ingredient => 
-        <p key={ingredient} onClick={() => removeIngredient(ingredient)}> {ingredient} </p>
-      )}
-      <button onClick={apiCall}>Mirar</button>
-      {recipes}
+      <button className='search-recipe-btn' onClick={handleClick}>Buscar receta</button>
+      <ul className='selected-ingredients-list'>
+        {selectedIngredients.map(ingredient => 
+          <li key={ingredient} className='selected-ingredients-item' onClick={() => removeIngredient(ingredient)}> {ingredient} </li>
+        )}
+      </ul>
     </>
 
   )

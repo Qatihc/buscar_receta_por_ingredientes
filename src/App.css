@@ -7,18 +7,17 @@
 :root {
   /* A9E4EF */
   --header-bg-color: #353535;
-  --card-bg-color: #ece2e2;
+  --card-bg-color: #edf0d8;
+  --accent-color: #3FC979;
 }
 
 .main-grid {
   display: grid;
   grid-template-columns: 2fr 3fr 2fr;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 3rem;
-  background-image: url('../public/269.jpg');
-  background-color: var(--card-bg-color);
+  background: url('../public/269.jpg') no-repeat ;
   background-blend-mode: multiply;
-  background-repeat: no-repeat;
   background-size: cover;
 }
 
@@ -50,9 +49,10 @@
   align-items: center;
   background-color: var(--card-bg-color);
   border-radius: 3%;
-  border-left: 3px #c1121f solid;
+  border-top: 3px #3FC979 solid;
   box-shadow: 0 3px 10px rgb(0 0 0);
   min-height: 500px;
+  transition: all ease-in-out 1s;
 }
 
 .card-header {

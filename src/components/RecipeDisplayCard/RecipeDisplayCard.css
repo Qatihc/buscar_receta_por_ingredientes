@@ -1,0 +1,12 @@
+.ttest {
+  position: absolute;
+  width: 50%;
+}
+
+.recipe-card-close-btn {
+  position: absolute;
+  cursor: pointer;
+  top: 2rem;
+  right: 2rem;
+  padding: 1rem;
+}
