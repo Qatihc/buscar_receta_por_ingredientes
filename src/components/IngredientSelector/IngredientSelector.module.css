@@ -14,8 +14,37 @@
   background-color: var(--gray-4);
   border: var(--gray-6) 2px solid;
   border-radius: 15px;
-  transition: all ease-in-out .3s;
+  /* Quiero que hago transition de todas las propiedades excepto color. */
+  transition: 
+    all .3s ease-in-out,
+    color 0s none;
 }
+
+.loadingBtn {
+  color: transparent;
+}
+
+.loadingBtn::before {
+  display: inline-block;
+  position: relative;
+  left: 40%;
+  width: 30px;
+  height: 30px;
+  content: '';
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+
 
 .searchRecipeBtn:hover {
   border: var(--accent-color) 2px solid;

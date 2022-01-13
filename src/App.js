@@ -10,13 +10,13 @@ import './App.css'
 
 function App() {
   const [state, dispatch] = useReducer(recipesReducer, recipesInitialState);
-  const {isLoading, displayRecipe, recipes} = state;
+  const { displayRecipe, recipes } = state;
   const closeRecipeCard = () => {
     dispatch({type: 'recipeClose'})
   }
 
   return (
-    <RecipeContext.Provider value={{dispatch: dispatch}}>
+    <RecipeContext.Provider value={{state: state, dispatch: dispatch}}>
       <div className="main-container">
         <RecipeSearchCard/>
         <AnimatePresence>
@@ -24,7 +24,6 @@ function App() {
           <RecipeDisplayCard recipes={recipes} closeRecipeCard={closeRecipeCard} />}
         </AnimatePresence>
       </div>
-      {isLoading && 'loading'/* AGREGAR SPINER */}
     </RecipeContext.Provider>
   );
 }
