@@ -1,12 +1,13 @@
 import { Card } from "../Card";
-import { AnimatePresence, motion } from "framer-motion"
-import './RecipeDisplayCard.css'
+import { motion } from "framer-motion"
+import styles from './RecipeDisplayCard.module.css'
+import close from '../../assets/close.png'
 
 const RecipeDisplayCard = ({ recipes, closeRecipeCard }) => {
   const recipe = recipes[0];
 
   return (
-      <motion.div className="ttest"
+      <motion.div className={styles.cardContainer}
         key="recipeCard"
         initial={{ opacity: 0, translateY: '-20%'}}
         animate={{ opacity: 1, translateY: '0%'}}
@@ -14,10 +15,10 @@ const RecipeDisplayCard = ({ recipes, closeRecipeCard }) => {
         transition={{ ease: 'easeInOut', duration: 0.5 }}
       >
         <Card>
-          <button className="recipe-card-close-btn" onClick={closeRecipeCard}>X</button>
-          <div className="card-header"> 
-            <h1 className="card-title">{recipe.title}</h1>
-            <img className="recipe-img" src={recipe.image}></img>
+          <button className={styles.closeBtn} onClick={closeRecipeCard}><img src={close} className={styles.closeIcon}></img></button>
+          <div className={styles.recipeContainer}>  
+            <h1 className={styles.title}>{recipe.title}</h1>
+            <img className={styles.img} src={recipe.image}></img>
           </div>
         </Card>
       </motion.div>

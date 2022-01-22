@@ -44,7 +44,7 @@ const IngredientSelector = () => {
         suggestions={suggestions} 
         selectSuggestion={addIngredient} 
       />
-      <button className={`${styles.searchRecipeBtn} ${styleLoadingBtn}`} onClick={handleClick}>Buscar receta</button>
+      <button className={`${styles.searchRecipeBtn} ${styleLoadingBtn}`} onClick={handleClick}>Search!</button>
       <ul className={styles.selectedIngredientsList}>
         {selectedIngredients.map(ingredient => 
           <li key={ingredient} className={styles.selectedIngredientsItem} onClick={() => removeIngredient(ingredient)}> {ingredient} </li>

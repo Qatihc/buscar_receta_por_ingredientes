@@ -1,5 +1,5 @@
 import { useState, useLayoutEffect } from "react"
-import { throttle } from "../../../utils";
+import { throttle } from "../utils";
 
 const useSuggestionsTopOffset = (suggestionsContainerRef, inputYPosition, suggestions) => {
   const [offset, setOffset] = useState(0);

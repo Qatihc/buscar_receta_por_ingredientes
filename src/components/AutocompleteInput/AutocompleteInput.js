@@ -77,7 +77,7 @@ const AutocompleteInput = ({ suggestions, selectSuggestion }) => {
   }
 
   return (
-    <div className={styles.inputContainer} onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1} onKeyDown={handleKeyPress}>
+    <div className={styles.inputContainer} onFocus={handleFocus} /* onBlur={handleBlur} */ tabIndex={-1} onKeyDown={handleKeyPress}>
       <input onChange={handleChange} className={styles.input} value={value} ref={inputRef} placeholder={suggestions[0]} type="text"/>
       {showSuggestions &&
         <SuggestionsList
